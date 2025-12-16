@@ -16,7 +16,7 @@ export class ButtonProvider extends ToolbarButtonProvider {
         private app: AppService,
     ) {
         super()
-        
+
         // Listen for hotkey matches
         this.hotkeys.matchedHotkey.subscribe(async (hotkey) => {
             if (hotkey === 'qc') {
@@ -26,7 +26,7 @@ export class ButtonProvider extends ToolbarButtonProvider {
                 this.executeCommandByShortcut(hotkey)
             }
         })
-        
+
         // Also listen for document keydown events to capture all shortcuts
         // Use capture phase to ensure we get the event before other handlers
         document.addEventListener('keydown', this.handleDocumentKeyDown.bind(this), true)
@@ -37,17 +37,17 @@ export class ButtonProvider extends ToolbarButtonProvider {
         if (event.repeat) {
             return
         }
-        
+
         // Skip if the user is typing in an input field
         // const target = event.target as HTMLElement
         // if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable) {
         //     return
         // }
-        
+
         // Build the shortcut string from the event
         let shortcut = ''
         const modifiers: string[] = []
-        
+
         if (event.ctrlKey || event.metaKey) {
             modifiers.push('Ctrl')
         }
@@ -57,22 +57,22 @@ export class ButtonProvider extends ToolbarButtonProvider {
         if (event.shiftKey) {
             modifiers.push('Shift')
         }
-        
+
         // Sort modifiers to ensure consistent ordering
         modifiers.sort()
-        
+
         // Add modifiers to shortcut string
         if (modifiers.length > 0) {
             shortcut = modifiers.join('+') + '+'
         }
-        
+
         // Add the main key
         const mainKey = event.key
-        
+
         // Only process if we have a valid main key (not just modifiers)
         if (mainKey && !['Control', 'Alt', 'Shift', 'Meta'].includes(mainKey)) {
             let processedKey = mainKey
-            
+
             // Handle special cases for keys that need consistent naming
             if (mainKey.length === 1) {
                 // For single character keys, use uppercase
@@ -81,9 +81,9 @@ export class ButtonProvider extends ToolbarButtonProvider {
                 // For special keys (like ArrowUp), use camelCase with first letter uppercase
                 processedKey = mainKey.charAt(0).toUpperCase() + mainKey.slice(1)
             }
-            
+
             shortcut += processedKey
-            
+
             // Check if this shortcut matches any command
             this.executeCommandByShortcut(shortcut)
         }
@@ -92,12 +92,12 @@ export class ButtonProvider extends ToolbarButtonProvider {
     async executeCommandByShortcut(hotkey: string) {
         const commands = this.config.store.qc.cmds
         const matchedCommand = commands.find(cmd => cmd.shortcut === hotkey)
-        
+
         if (matchedCommand) {
             // Use count +1 and persist
             this.usageCount[matchedCommand.text] = (this.usageCount[matchedCommand.text] || 0) + 1
             localStorage.setItem('qcUsageCount', JSON.stringify(this.usageCount))
-            
+
             // Execute the command
             await this._send(this.app.activeTab, matchedCommand)
         }
@@ -114,7 +114,7 @@ export class ButtonProvider extends ToolbarButtonProvider {
             let terminator = "\n"
             let lineContinuation = "\\"
             let cmdDelimiter = "&&"
-            
+
             // Set different command delimiters and line continuations based on terminal type
             if (currentTab.title.includes('cmd.exe')) {
                 terminator = "\r\n"
@@ -125,7 +125,7 @@ export class ButtonProvider extends ToolbarButtonProvider {
                 lineContinuation = "`"
                 cmdDelimiter=";"
             }
-            
+
             let cmd_text=quick_cmd.text
             let cmds=cmd_text.split(/(?:\r\n|\r|\n)/)
             let new_cmds=[]
@@ -151,12 +151,13 @@ export class ButtonProvider extends ToolbarButtonProvider {
                             return String.fromCharCode(parseInt(pair, 16))
                         })
                 }
-            
+
                 if(!quick_cmd.appendCR){
                     new_cmds.push(cmd)
                     continue
                 }
 
+                console.log("44444 cmd: ", cmd)
                 await currentTab.sendInput(cmd)
                 await this.sleep(50) // Add a small delay to ensure command is sent
                 await currentTab.sendInput(terminator)
@@ -170,6 +171,7 @@ export class ButtonProvider extends ToolbarButtonProvider {
                 } else {
                     new_cmd_text = new_cmds.join(" "+cmdDelimiter + lineContinuation + terminator)
                 }
+                console.log("44444 text: ", new_cmd_text)
                 await currentTab.sendInput(new_cmd_text)
             }
         }
