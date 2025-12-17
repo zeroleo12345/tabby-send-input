@@ -76,13 +76,13 @@ export class EditCommandModalComponent {
             }
 
             // Only process if we have a valid main key (not just modifiers)
-            console.log("222 eventData.ctrlKey", eventData.ctrlKey)
-            console.log("222 eventData.metaKey", eventData.metaKey)
-            console.log("222 eventData.shiftKey", eventData.shiftKey)
-            console.log("222 eventData.altKey", eventData.altKey)
-            console.log("222 eventData.key", eventData.key)
-            console.log("222 keyName", keyName)
-            console.log("222 altKeyName", altKeyName)
+            // console.log("222 eventData.ctrlKey", eventData.ctrlKey)
+            // console.log("222 eventData.metaKey", eventData.metaKey)
+            // console.log("222 eventData.shiftKey", eventData.shiftKey)
+            // console.log("222 eventData.altKey", eventData.altKey)
+            // console.log("222 eventData.key", eventData.key)
+            // console.log("222 keyName", keyName)
+            // console.log("222 altKeyName", altKeyName)
             if (!['Control', altKeyName, 'Shift', metaKeyName].includes(keyName)) {
                 shortcut += keyName
                 this.command.shortcut = shortcut
