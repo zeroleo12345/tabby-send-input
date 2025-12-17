@@ -98,6 +98,12 @@ export class ButtonProvider extends ToolbarButtonProvider {
     }
 
     async executeCommandByShortcut(hotkey: string) {
+        if(this.config.store.reload) {
+            for (let cmd of this.config.store.qc.cmds) {
+                this.config.store.hotkeys["Quick Cmd: " + cmd.name] = [cmd.shortcut.replace(/\+/g, '-')]
+            }
+            this.config.store.reload = false
+        }
         const commands = this.config.store.qc.cmds
         // console.log("111 quick commands: ", commands)
         // console.log("111 input hotkeys: ", hotkey)
