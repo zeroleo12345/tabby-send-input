@@ -91,6 +91,7 @@ export class ButtonProvider extends ToolbarButtonProvider {
 
     async executeCommandByShortcut(hotkey: string) {
         const commands = this.config.store.qc.cmds
+        console.log("quick commands: ", commands)
         const matchedCommand = commands.find(cmd => cmd.shortcut === hotkey)
 
         if (matchedCommand) {

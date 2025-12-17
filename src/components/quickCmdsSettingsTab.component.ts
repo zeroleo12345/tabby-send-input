@@ -34,6 +34,16 @@ export class QuickCmdsSettingsTabComponent {
         modal.componentInstance.allGroups = Array.from(new Set(this.commands.map(x => x.group || ''))).filter(x => x)
 
         modal.result.then(result => {
+            /*
+            // 从UI保存 QuickCmds: name, shortcut, text, group
+            export interface QuickCmds {
+                name: string
+                text: string
+                appendCR: boolean
+                group?: string
+                shortcut?: string
+            }
+            */
             this.commands.push(result)
             this.config.store.qc.cmds = this.commands
             this.config.save()
@@ -117,5 +127,5 @@ export class QuickCmdsSettingsTabComponent {
             group.cmds.push(cmd)
         }
     }
-   
+
 }
