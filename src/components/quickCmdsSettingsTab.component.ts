@@ -35,7 +35,7 @@ export class QuickCmdsSettingsTabComponent {
 
         modal.result.then(result => {
             /*
-            // 从UI保存 QuickCmds: name, shortcut, text, group
+            // 从UI新建 QuickCmds: name, shortcut, text, group
             export interface QuickCmds {
                 name: string
                 text: string
@@ -61,6 +61,16 @@ export class QuickCmdsSettingsTabComponent {
             if (result.group === 'Ungrouped') {
                 result.group = null
             }
+            /*
+            // 从UI修改 QuickCmds: name, shortcut, text, group
+            export interface QuickCmds {
+                name: string
+                text: string
+                appendCR: boolean
+                group?: string
+                shortcut?: string
+            }
+            */
             Object.assign(command, result)
             this.config.save()
             this.refresh()
