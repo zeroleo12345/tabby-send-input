@@ -4,6 +4,7 @@ import { HotkeysService, ToolbarButtonProvider, IToolbarButton, ConfigService, A
 import { QuickCmdsModalComponent } from './components/quickCmdsModal.component'
 import { BaseTerminalTabComponent } from 'tabby-terminal';
 import { QuickCmds } from './api'
+// import { altKeyName } from "tabby-core"
 
 @Injectable()
 export class ButtonProvider extends ToolbarButtonProvider {
