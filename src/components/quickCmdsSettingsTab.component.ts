@@ -135,8 +135,8 @@ export class QuickCmdsSettingsTabComponent {
                 this.childGroups.push(group)
             }
             group.cmds.push(cmd)
-            this.config.store.hotkeys["Quick Cmd: " + cmd.name] = [cmd.shortcut.replace(/\+/g, '-')]
         }
+        this.config.store.reload = true
     }
 
 }

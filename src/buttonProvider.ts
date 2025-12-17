@@ -99,9 +99,17 @@ export class ButtonProvider extends ToolbarButtonProvider {
     }
 
     async executeCommandByShortcut(hotkey: string) {
-        if(this.config.store.reload) {
+        if (this.config.store.reload) {
+            let hotkeyNamePrefix = "Quick Cmd: "
+            // Cleanup Quick Cmd hotkeys
+            for (const key of Object.keys(this.config.store.hotkeys)) {
+                if (key.startsWith(hotkeyNamePrefix)) {
+                    delete this.config.store.hotkeys[key]
+                }
+            }
+            // Add new Quick Cmd hotkeys
             for (let cmd of this.config.store.qc.cmds) {
-                this.config.store.hotkeys["Quick Cmd: " + cmd.name] = [cmd.shortcut.replace(/\+/g, '-')]
+                this.config.store.hotkeys[hotkeyNamePrefix + cmd.name] = [cmd.shortcut.replace(/\+/g, '-')]
             }
             this.config.store.reload = false
         }
