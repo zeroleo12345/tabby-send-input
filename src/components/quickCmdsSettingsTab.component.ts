@@ -74,13 +74,6 @@ export class QuickCmdsSettingsTabComponent {
             Object.assign(command, result)
             this.config.save()
             this.refresh()
-            console.log("111: setting hotkeys")
-            this.config.store.hotkeys.bbbb = ['⌥-O']
-            // this.config.store.hotkeys = {
-            //     'qc': ['Alt-Q', ],
-            //     'bbbb': ['⌥-O', ],
-            // }
-            console.log("222: setting hotkeys")
         })
     }
 
@@ -142,6 +135,7 @@ export class QuickCmdsSettingsTabComponent {
                 this.childGroups.push(group)
             }
             group.cmds.push(cmd)
+            this.config.store.hotkeys["Quick Cmd: " + cmd.name] = [cmd.shortcut]
         }
     }
 
