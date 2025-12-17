@@ -4,7 +4,7 @@ import { HotkeysService, ToolbarButtonProvider, IToolbarButton, ConfigService, A
 import { QuickCmdsModalComponent } from './components/quickCmdsModal.component'
 import { BaseTerminalTabComponent } from 'tabby-terminal';
 import { QuickCmds } from './api'
-// import { altKeyName } from "tabby-core"
+import { altKeyName, metaKeyName, getKeyName } from "./service"
 
 @Injectable()
 export class ButtonProvider extends ToolbarButtonProvider {
@@ -39,6 +39,18 @@ export class ButtonProvider extends ToolbarButtonProvider {
             return
         }
 
+        const eventData = {
+            ctrlKey: event.ctrlKey,
+            metaKey: event.metaKey,
+            altKey: event.altKey,
+            shiftKey: event.shiftKey,
+            code: event.code,
+            key: event.key,
+            eventName: "keydown",
+            time: event.timeStamp,
+            registrationTime: performance.now(),
+        }
+        const keyName = getKeyName(eventData)
         // Skip if the user is typing in an input field
         // const target = event.target as HTMLElement
         // if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable) {
@@ -49,13 +61,16 @@ export class ButtonProvider extends ToolbarButtonProvider {
         let shortcut = ''
         const modifiers: string[] = []
 
-        if (event.ctrlKey || event.metaKey) {
+        if (eventData.ctrlKey) {
             modifiers.push('Ctrl')
         }
-        if (event.altKey) {
-            modifiers.push('Alt')
+        if (eventData.metaKey) {
+            modifiers.push(metaKeyName)
         }
-        if (event.shiftKey) {
+        if (eventData.altKey) {
+            modifiers.push(altKeyName)
+        }
+        if (eventData.shiftKey) {
             modifiers.push('Shift')
         }
 
@@ -67,24 +82,16 @@ export class ButtonProvider extends ToolbarButtonProvider {
             shortcut = modifiers.join('+') + '+'
         }
 
-        // Add the main key
-        const mainKey = event.key
-
+        console.log("222 eventData.ctrlKey", eventData.ctrlKey)
+        console.log("222 eventData.metaKey", eventData.metaKey)
+        console.log("222 eventData.shiftKey", eventData.shiftKey)
+        console.log("222 eventData.altKey", eventData.altKey)
+        console.log("222 eventData.key", eventData.key)
+        console.log("222 keyName", keyName)
+        console.log("222 altKeyName", altKeyName)
         // Only process if we have a valid main key (not just modifiers)
-        if (mainKey && !['Control', 'Alt', 'Shift', 'Meta'].includes(mainKey)) {
-            let processedKey = mainKey
-
-            // Handle special cases for keys that need consistent naming
-            if (mainKey.length === 1) {
-                // For single character keys, use uppercase
-                processedKey = mainKey.toUpperCase()
-            } else {
-                // For special keys (like ArrowUp), use camelCase with first letter uppercase
-                processedKey = mainKey.charAt(0).toUpperCase() + mainKey.slice(1)
-            }
-
-            shortcut += processedKey
-
+        if (!['Control', altKeyName, 'Shift', metaKeyName].includes(keyName)) {
+            shortcut += keyName
             // Check if this shortcut matches any command
             this.executeCommandByShortcut(shortcut)
         }

@@ -18,6 +18,9 @@ export class EditCommandModalComponent {
 
     @HostListener('document:keydown', ['$event'])
     onKeyDown(event: KeyboardEvent) {
+        /*
+        UI输入框监听设置快捷键
+         */
         if (this.isCapturingShortcut) {
             event.preventDefault()
             event.stopPropagation()
@@ -51,8 +54,11 @@ export class EditCommandModalComponent {
             let shortcut = ''
             const modifiers: string[] = []
 
-            if (eventData.ctrlKey || eventData.metaKey) {
+            if (eventData.ctrlKey) {
                 modifiers.push('Ctrl')
+            }
+            if (eventData.metaKey) {
+                modifiers.push(metaKeyName)
             }
             if (eventData.altKey) {
                 modifiers.push(altKeyName)
@@ -78,21 +84,7 @@ export class EditCommandModalComponent {
             console.log("222 keyName", keyName)
             console.log("222 altKeyName", altKeyName)
             if (!['Control', altKeyName, 'Shift', metaKeyName].includes(keyName)) {
-                let processedKey = keyName
-
-                // Handle special cases for keys that need consistent naming
-                if (keyName.length === 1) {
-                    // For single character keys, use uppercase
-                    processedKey = keyName.toUpperCase()
-                } else {
-                    // For special keys (like ArrowUp), use camelCase with first letter uppercase
-                    processedKey = keyName.charAt(0).toUpperCase() + keyName.slice(1)
-                }
-
-                shortcut += processedKey
-                /*
-                UI输入框监听设置快捷键
-                 */
+                shortcut += keyName
                 this.command.shortcut = shortcut
                 this.isCapturingShortcut = false
             }
