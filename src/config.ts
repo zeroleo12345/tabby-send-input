@@ -6,9 +6,7 @@ export class QuickCmdsConfigProvider extends ConfigProvider {
             cmds: []
         },
         hotkeys: {
-            'qc': [
-                'Alt-Q',
-            ],
+            'qc': ['Alt-Q', '⌥-Q'],
         },
     }
 
