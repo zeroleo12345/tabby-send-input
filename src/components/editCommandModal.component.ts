@@ -51,7 +51,6 @@ export class EditCommandModalComponent {
                 return
             }
 
-            let shortcut = ''
             const modifiers: string[] = []
 
             if (eventData.ctrlKey) {
@@ -71,6 +70,7 @@ export class EditCommandModalComponent {
             modifiers.sort()
 
             // Add modifiers to shortcut string
+            let shortcut = ''
             if (modifiers.length > 0) {
                 shortcut = modifiers.join('+') + '+'
             }

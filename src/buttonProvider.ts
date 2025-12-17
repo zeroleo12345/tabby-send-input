@@ -58,7 +58,6 @@ export class ButtonProvider extends ToolbarButtonProvider {
         // }
 
         // Build the shortcut string from the event
-        let shortcut = ''
         const modifiers: string[] = []
 
         if (eventData.ctrlKey) {
@@ -78,6 +77,7 @@ export class ButtonProvider extends ToolbarButtonProvider {
         modifiers.sort()
 
         // Add modifiers to shortcut string
+        let shortcut = ''
         if (modifiers.length > 0) {
             shortcut = modifiers.join('+') + '+'
         }
