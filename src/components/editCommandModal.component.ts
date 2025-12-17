@@ -1,7 +1,8 @@
 import { Component, HostListener } from '@angular/core'
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 import { QuickCmds } from '../api'
-import { altKeyName, metaKeyName, getKeyName } from "../service"
+import { altKeyName, metaKeyName, getKeyName, KeyEventData } from "../service"
+// import { altKeyName, metaKeyName, getKeyName, KeyEventData } from "tabby-core"
 
 @Component({
     template: require('./editCommandModal.component.pug'),
@@ -25,7 +26,7 @@ export class EditCommandModalComponent {
             event.preventDefault()
             event.stopPropagation()
 
-            const eventData = {
+            const eventData: KeyEventData = {
                 ctrlKey: event.ctrlKey,
                 metaKey: event.metaKey,
                 altKey: event.altKey,

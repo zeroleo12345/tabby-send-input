@@ -4,7 +4,8 @@ import { HotkeysService, ToolbarButtonProvider, IToolbarButton, ConfigService, A
 import { QuickCmdsModalComponent } from './components/quickCmdsModal.component'
 import { BaseTerminalTabComponent } from 'tabby-terminal';
 import { QuickCmds } from './api'
-import { altKeyName, metaKeyName, getKeyName } from "./service"
+import { altKeyName, metaKeyName, getKeyName, KeyEventData } from "./service"
+// import { altKeyName, metaKeyName, getKeyName, KeyEventData } from "tabby-core"
 
 @Injectable()
 export class ButtonProvider extends ToolbarButtonProvider {
@@ -39,7 +40,7 @@ export class ButtonProvider extends ToolbarButtonProvider {
             return
         }
 
-        const eventData = {
+        const eventData: KeyEventData = {
             ctrlKey: event.ctrlKey,
             metaKey: event.metaKey,
             altKey: event.altKey,
