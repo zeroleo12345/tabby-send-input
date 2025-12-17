@@ -17,9 +17,6 @@ export class EditCommandModalComponent {
 
     @HostListener('document:keydown', ['$event'])
     onKeyDown(event: KeyboardEvent) {
-        /*
-        UI输入框监听设置快捷键
-         */
         if (this.isCapturingShortcut) {
             event.preventDefault()
             event.stopPropagation()
@@ -75,6 +72,9 @@ export class EditCommandModalComponent {
                 }
 
                 shortcut += processedKey
+                /*
+                UI输入框监听设置快捷键
+                 */
                 this.command.shortcut = shortcut
                 this.isCapturingShortcut = false
             }
