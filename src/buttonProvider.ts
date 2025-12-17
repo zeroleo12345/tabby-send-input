@@ -91,7 +91,7 @@ export class ButtonProvider extends ToolbarButtonProvider {
 
     async executeCommandByShortcut(hotkey: string) {
         const commands = this.config.store.qc.cmds
-        console.log("quick commands: ", commands)
+        console.log("111 quick commands: ", commands)
         const matchedCommand = commands.find(cmd => cmd.shortcut === hotkey)
 
         if (matchedCommand) {
@@ -158,7 +158,6 @@ export class ButtonProvider extends ToolbarButtonProvider {
                     continue
                 }
 
-                console.log("44444 cmd: ", cmd)
                 await currentTab.sendInput(cmd)
                 await this.sleep(50) // Add a small delay to ensure command is sent
                 await currentTab.sendInput(terminator)
@@ -172,7 +171,6 @@ export class ButtonProvider extends ToolbarButtonProvider {
                 } else {
                     new_cmd_text = new_cmds.join(" "+cmdDelimiter + lineContinuation + terminator)
                 }
-                console.log("44444 text: ", new_cmd_text)
                 await currentTab.sendInput(new_cmd_text)
             }
         }
