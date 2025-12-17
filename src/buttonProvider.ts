@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
-import { HotkeysService, ToolbarButtonProvider, IToolbarButton, ConfigService, AppService, BaseTabComponent, SplitTabComponent } from 'terminus-core'
+import { HotkeysService, ToolbarButtonProvider, IToolbarButton, ConfigService, AppService, BaseTabComponent, SplitTabComponent } from 'tabby-core'
 import { QuickCmdsModalComponent } from './components/quickCmdsModal.component'
-import { BaseTerminalTabComponent as TerminalTabComponent } from 'terminus-terminal';
+import { BaseTerminalTabComponent } from 'tabby-terminal';
 import { QuickCmds } from './api'
 
 @Injectable()
@@ -110,8 +110,8 @@ export class ButtonProvider extends ToolbarButtonProvider {
             this._send((tab as SplitTabComponent).getFocusedTab(), quick_cmd)
             return
         }
-        if (tab instanceof TerminalTabComponent) {
-            let currentTab = tab as TerminalTabComponent
+        if (tab instanceof BaseTerminalTabComponent) {
+            let currentTab = tab as BaseTerminalTabComponent<any>
 
             let terminator = "\n"
             let lineContinuation = "\\"
