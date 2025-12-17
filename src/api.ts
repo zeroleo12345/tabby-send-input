@@ -2,8 +2,8 @@ export interface QuickCmds {
     name: string
     text: string
     appendCR: boolean
-    group?: string
     shortcut?: string
+    group?: string
 }
 
 export interface ICmdGroup {
