@@ -20,7 +20,7 @@ export class ButtonProvider extends ToolbarButtonProvider {
         super()
 
         // Listen for hotkey matches
-        this.hotkeys.matchedHotkey.subscribe(async (hotkey) => {
+        this.hotkeys.hotkey$.subscribe(async (hotkey) => {
             if (hotkey === 'qc') {
                 this.activate()
             } else {
