@@ -100,7 +100,7 @@ export class ButtonProvider extends ToolbarButtonProvider {
 
     async executeCommandByShortcut(hotkey: string) {
         if (this.config.store.reload) {
-            console.log("111 reload hotkeys")
+            // console.log("111 reload hotkeys")
             let hotkeyNamePrefix = "Quick Cmd: "
             // Cleanup Quick Cmd hotkeys
             for (const key of Object.keys(this.config.store.hotkeys)) {
