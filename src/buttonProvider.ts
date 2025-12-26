@@ -25,7 +25,7 @@ export class ButtonProvider extends ToolbarButtonProvider {
                 this.activate()
             } else {
                 // Check if this hotkey matches any command's shortcut
-                this.executeCommandByShortcut(hotkey)
+                this.executeCommandByShortcut(null, hotkey)
             }
         })
 
@@ -94,11 +94,11 @@ export class ButtonProvider extends ToolbarButtonProvider {
         if (!['Control', altKeyName, 'Shift', metaKeyName].includes(keyName)) {
             shortcut += keyName
             // Check if this shortcut matches any command
-            this.executeCommandByShortcut(shortcut)
+            this.executeCommandByShortcut(event, shortcut)
         }
     }
 
-    async executeCommandByShortcut(hotkey: string) {
+    async executeCommandByShortcut(event, hotkey: string) {
         if (this.config.store.reload) {
             // console.log("111 reload hotkeys")
             let hotkeyNamePrefix = "Quick Cmd: "
@@ -114,6 +114,7 @@ export class ButtonProvider extends ToolbarButtonProvider {
             }
             this.config.store.reload = false
         }
+
         const commands = this.config.store.qc.cmds
         // console.log("111 quick commands: ", commands)
         // console.log("111 input hotkeys: ", hotkey)
@@ -126,6 +127,9 @@ export class ButtonProvider extends ToolbarButtonProvider {
 
             // Execute the command
             await this._send(this.app.activeTab, matchedCommand)
+            // console.log("event:", event)
+            event.preventDefault()
+            event.stopPropagation()
         }
     }
 
