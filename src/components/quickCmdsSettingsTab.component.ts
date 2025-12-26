@@ -136,6 +136,7 @@ export class QuickCmdsSettingsTabComponent {
             }
             group.cmds.push(cmd)
         }
+        this.config.store.reload = true
     }
 
 }
