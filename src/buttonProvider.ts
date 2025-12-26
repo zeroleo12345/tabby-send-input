@@ -23,9 +23,6 @@ export class ButtonProvider extends ToolbarButtonProvider {
         this.hotkeys.hotkey$.subscribe(async (hotkey) => {
             if (hotkey === 'qc') {
                 this.activate()
-            } else {
-                // Check if this hotkey matches any command's shortcut
-                this.executeCommandByShortcut(null, hotkey)
             }
         })
 
@@ -99,22 +96,6 @@ export class ButtonProvider extends ToolbarButtonProvider {
     }
 
     async executeCommandByShortcut(event, hotkey: string) {
-        if (this.config.store.reload) {
-            // console.log("111 reload hotkeys")
-            let hotkeyNamePrefix = "Quick Cmd: "
-            // Cleanup Quick Cmd hotkeys
-            for (const key of Object.keys(this.config.store.hotkeys)) {
-                if (key.startsWith(hotkeyNamePrefix)) {
-                    delete this.config.store.hotkeys[key]
-                }
-            }
-            // Add new Quick Cmd hotkeys
-            for (let cmd of this.config.store.qc.cmds) {
-                this.config.store.hotkeys[hotkeyNamePrefix + cmd.name] = [cmd.shortcut.replace(/\+/g, '-')]
-            }
-            this.config.store.reload = false
-        }
-
         const commands = this.config.store.qc.cmds
         // console.log("111 quick commands: ", commands)
         // console.log("111 input hotkeys: ", hotkey)
