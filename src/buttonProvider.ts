@@ -97,8 +97,6 @@ export class ButtonProvider extends ToolbarButtonProvider {
 
     async executeCommandByShortcut(event, hotkey: string) {
         const commands = this.config.store.qc.cmds
-        // console.log("111 quick commands: ", commands)
-        // console.log("111 input hotkeys: ", hotkey)
         const matchedCommand = commands.find(cmd => cmd.shortcut === hotkey)
 
         if (matchedCommand) {
@@ -106,7 +104,6 @@ export class ButtonProvider extends ToolbarButtonProvider {
             this.usageCount[matchedCommand.text] = (this.usageCount[matchedCommand.text] || 0) + 1
             localStorage.setItem('qcUsageCount', JSON.stringify(this.usageCount))
 
-            // Execute the command
             if (await this._send(this.app.activeTab, matchedCommand)) {
                 // console.log("event:", event)
                 event.preventDefault()
