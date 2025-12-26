@@ -107,17 +107,17 @@ export class ButtonProvider extends ToolbarButtonProvider {
             localStorage.setItem('qcUsageCount', JSON.stringify(this.usageCount))
 
             // Execute the command
-            await this._send(this.app.activeTab, matchedCommand)
-            // console.log("event:", event)
-            event.preventDefault()
-            event.stopPropagation()
+            if (await this._send(this.app.activeTab, matchedCommand)) {
+                // console.log("event:", event)
+                event.preventDefault()
+                event.stopPropagation()
+            }
         }
     }
 
     async _send (tab: BaseTabComponent, quick_cmd: QuickCmds) {
         if (tab instanceof SplitTabComponent) {
-            this._send((tab as SplitTabComponent).getFocusedTab(), quick_cmd)
-            return
+            return this._send((tab as SplitTabComponent).getFocusedTab(), quick_cmd)
         }
         if (tab instanceof BaseTerminalTabComponent) {
             let currentTab = tab as BaseTerminalTabComponent<any>
@@ -183,7 +183,9 @@ export class ButtonProvider extends ToolbarButtonProvider {
                 }
                 await currentTab.sendInput(new_cmd_text)
             }
+            return true
         }
+        return false
     }
 
     sleep(ms: number) {
