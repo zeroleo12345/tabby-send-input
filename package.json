@@ -1,12 +1,9 @@
 {
-  "name": "tabby-quick-cmds",
-  "version": "1.1.2",
-  "description": "Quick commands manager for Tabby",
-  "homepage": "https://github.com/minyoad/terminus-quick-cmds",
+  "name": "@zeroleo12345/tabby-quick-cmds",
+  "version": "0.0.1",
+  "description": "hotkey plugin for Tabby",
   "keywords": [
-    "terminus-plugin",
-    "tabby-plugin",
-    "quick-commands"
+    "@zeroleo12345/tabby-plugin"
   ],
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
