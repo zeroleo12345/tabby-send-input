@@ -1,10 +1,11 @@
 {
   "name": "@zeroleo12345/tabby-send-input",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "hotkey plugin for Tabby",
   "keywords": [
     "tabby-plugin",
-    "terminus-plugin"
+    "terminus-plugin",
+    "@zeroleo12345/tabby-plugin"
   ],
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
