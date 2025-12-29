@@ -26,11 +26,6 @@ import { QuickCmdsSettingsTabProvider } from './settings'
         { provide: ConfigProvider, useClass: QuickCmdsConfigProvider, multi: true },
         { provide: SettingsTabProvider, useClass: QuickCmdsSettingsTabProvider, multi: true },
     ],
-    entryComponents: [
-        PromptModalComponent,
-        EditCommandModalComponent,
-        QuickCmdsSettingsTabComponent,
-    ],
     declarations: [
         PromptModalComponent,
         EditCommandModalComponent,
