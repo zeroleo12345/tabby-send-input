@@ -2,8 +2,8 @@ name: Publish to npm
 
 on:
   push:
-    branches:
-      - zlx-base-5c113ab0fa68e7f48fd9579533168f287a08c949
+    tags:
+      - 'v*'
 
 permissions:
   id-token: write  # Required for OIDC
