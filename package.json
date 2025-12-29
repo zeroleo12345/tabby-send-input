@@ -1,6 +1,6 @@
 {
   "name": "@zeroleo12345/tabby-quick-cmds",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "hotkey plugin for Tabby",
   "keywords": [
     "@zeroleo12345/tabby-plugin"
@@ -54,13 +54,6 @@
     "tabby-settings": "^1.0.197-nightly.1",
     "tabby-terminal": "^1.0.197-nightly.1",
     "ts-loader": "^9.2.8"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/minyoad/terminus-quick-cmds.git"
-  },
-  "bugs": {
-    "url": "https://github.com/minyoad/terminus-quick-cmds/issues"
   },
   "engines": {
     "node": ">=14.0.0 <19.0.0"
