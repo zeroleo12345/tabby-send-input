@@ -1,6 +1,6 @@
 {
   "name": "@zeroleo12345/tabby-send-input",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "hotkey plugin for Tabby",
   "keywords": [
     "@zeroleo12345/tabby-plugin"
