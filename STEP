@@ -4,6 +4,9 @@ yarn
 
 yarn run build
 
+
+mv  ~/Library/Application\ Support/tabby/plugins/node_modules/@zeroleo12345/tabby-send-input/dist  ~/Library/Application\ Support/tabby/plugins/node_modules/@zeroleo12345/tabby-send-input/dist.bak
+
 ln -s  ~/github/tabby_project/terminus-quick-cmds/dist  ~/Library/Application\ Support/tabby/plugins/node_modules/@zeroleo12345/tabby-send-input/dist
 ```
 
