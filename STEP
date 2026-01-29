@@ -1,5 +1,21 @@
+# 编译插件
+``` bash
 yarn
 
 yarn run build
 
-ln -s ~/github/tabby_project/terminus-quick-cmds/dist ~/Library/Application\ Support/tabby/plugins/node_modules/tabby-quick-cmds/dist
+
+mv  ~/Library/Application\ Support/tabby/plugins/node_modules/@zeroleo12345/tabby-send-input/dist  ~/Library/Application\ Support/tabby/plugins/node_modules/@zeroleo12345/tabby-send-input/dist.bak
+
+ln -s  ~/github/tabby_project/terminus-quick-cmds/dist  ~/Library/Application\ Support/tabby/plugins/node_modules/@zeroleo12345/tabby-send-input/dist
+```
+
+
+# 登录npm仓库, 并发布
+``` bash
+npm login
+
+npm whoami
+
+npm publish --access public     #  先编译, 参考章节"编译插件"
+```

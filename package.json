@@ -1,20 +1,17 @@
 {
-  "name": "tabby-quick-cmds",
-  "version": "1.1.2",
-  "description": "Quick commands manager for Tabby",
-  "homepage": "https://github.com/minyoad/terminus-quick-cmds",
+  "name": "@zeroleo12345/tabby-send-input",
+  "version": "0.0.5",
+  "description": "hotkey plugin for Tabby",
   "keywords": [
-    "terminus-plugin",
     "tabby-plugin",
-    "quick-commands"
+    "terminus-plugin",
+    "@zeroleo12345/tabby-plugin"
   ],
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "webpack --progress --color",
     "watch": "webpack --progress --color --watch",
-    "pub": "npm run pack:zip",
-    "pack:zip": "powershell Compress-Archive -Path dist,package.json,README.md,README_CN.md,LICENSE -DestinationPath tabby-quick-cmds-v$env:npm_package_version.zip -Force",
     "prepublishOnly": "npm run build"
   },
   "files": [
@@ -57,13 +54,6 @@
     "tabby-settings": "^1.0.197-nightly.1",
     "tabby-terminal": "^1.0.197-nightly.1",
     "ts-loader": "^9.2.8"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/minyoad/terminus-quick-cmds.git"
-  },
-  "bugs": {
-    "url": "https://github.com/minyoad/terminus-quick-cmds/issues"
   },
   "engines": {
     "node": ">=14.0.0 <19.0.0"
