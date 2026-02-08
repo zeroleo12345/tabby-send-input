@@ -72,6 +72,7 @@ export class QuickCmdButtonProvider extends ToolbarButtonProvider {
             this.config.store.hotkeys[hotkey_id] = [cmd.shortcut.replace(/\+/g, '-')]
             cmd.id = hotkey_id
         }
+        this.hotkeys.matchedHotkey.emit('reload-hotkey')
     }
 
     provide (): IToolbarButton[] {

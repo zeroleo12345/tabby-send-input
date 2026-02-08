@@ -11,6 +11,8 @@ yarn run build
 mv  ~/Library/Application\ Support/tabby/plugins/node_modules/tabby-send-input/dist  ~/Library/Application\ Support/tabby/plugins/node_modules/tabby-send-input/dist.bak
 
 ln -s  ~/github/tabby_project/plugins/tabby-send-input/dist  ~/Library/Application\ Support/tabby/plugins/node_modules/tabby-send-input/dist
+
+/bin/ls -G -Art -al ~/Library/Application\ Support/tabby/plugins/node_modules/tabby-send-input
 ```
 
 
