@@ -3,7 +3,7 @@ name: Publish to npm
 on:
   push:
     tags:
-      - 'v*'
+      - 'v[0-9]+.[0-9]+.[0-9]+'  # tag format: vX.X.X
 
 permissions:
   id-token: write  # Required for OIDC
@@ -32,6 +32,11 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Bump version in package.json
+        run: |
+          npm version ${{ github.ref_name }} --no-git-tag-version
+
       # setup OIDC between NPMJS.com and Github Action, can set it in NPM repo Settings
       - name: Publish to npm
-        run: npm publish
+        run: |
+          npm publish
