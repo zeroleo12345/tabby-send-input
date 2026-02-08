@@ -24,3 +24,9 @@ npm whoami
 
 npm publish --access public     #  先编译, 参考章节"编译插件"
 ```
+
+
+- release by CI trigger
+``` bash
+git_tag_push v0.0.8
+```
