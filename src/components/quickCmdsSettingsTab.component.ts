@@ -147,4 +147,9 @@ export class QuickCmdsSettingsTabComponent {
         this.get_button()?.reload_hotkey()
     }
 
+    getSortedCmds(cmds: any[]) {
+      return [...cmds].sort((a, b) => {
+        return a.text.localeCompare(b.text)
+      })
+    }
 }
