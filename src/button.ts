@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { HotkeysService, ToolbarButtonProvider, IToolbarButton, ConfigService, AppService, BaseTabComponent, SplitTabComponent } from 'tabby-core'
-import { BaseTerminalTabComponent } from 'tabby-terminal';
+import { BaseTerminalTabComponent } from 'tabby-terminal'
 import { QuickCmds } from './api'
 
 @Injectable()
@@ -50,7 +50,7 @@ export class QuickCmdButtonProvider extends ToolbarButtonProvider {
             }
 
             let currentTab = tab as BaseTerminalTabComponent<any>
-            await currentTab.sendInput(cmd)
+            currentTab.sendInput(cmd)
             return true
         }
         return false
