@@ -1,6 +1,6 @@
 {
   "name": "tabby-send-input",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "hotkey plugin for Tabby",
   "keywords": [
     "tabby-plugin",
@@ -54,6 +54,10 @@
     "tabby-settings": "^1.0.197-nightly.1",
     "tabby-terminal": "^1.0.197-nightly.1",
     "ts-loader": "^9.2.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeroleo12345/tabby-send-input.git"
   },
   "engines": {
     "node": ">=14.0.0 <19.0.0"

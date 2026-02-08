@@ -32,5 +32,6 @@ jobs:
       - name: Build project
         run: npm run build
 
+      # setup OIDC between NPMJS.com and Github Action, can set it in NPM repo Settings
       - name: Publish to npm
         run: npm publish
