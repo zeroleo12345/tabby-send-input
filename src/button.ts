@@ -16,9 +16,10 @@ export class QuickCmdButtonProvider extends ToolbarButtonProvider {
 
         this.config.ready$.toPromise().then(() => {
             this.reload_hotkey()
-        })
-        this.config.changed$.subscribe(() => {
-            this.reload_hotkey()
+
+            this.config.changed$.subscribe(() => {
+                this.reload_hotkey()
+            })
         })
         // Listen for hotkey matches
         this.hotkeys.hotkey$.subscribe(async (hotkey_id) => {
