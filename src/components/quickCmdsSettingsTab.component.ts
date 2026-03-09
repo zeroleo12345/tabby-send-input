@@ -7,7 +7,7 @@ import { PromptModalComponent } from './promptModal.component'
 import { QuickCmdButtonProvider } from "../button";
 
 @Component({
-    templateUrl: './quickCmdsSettingsTab.component.pug',
+    template: require('./quickCmdsSettingsTab.component.pug'),
 })
 export class QuickCmdsSettingsTabComponent {
     quickCmd: string
