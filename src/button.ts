@@ -6,6 +6,7 @@ import { QuickCmds } from './api'
 @Injectable()
 export class QuickCmdButtonProvider extends ToolbarButtonProvider {
     PLUGIN_NAME = "Quick Cmd"
+    private hotkeyConfig: Record<string, QuickCmds> = {}
 
     constructor (
         private hotkeys: HotkeysService,
@@ -28,12 +29,8 @@ export class QuickCmdButtonProvider extends ToolbarButtonProvider {
     }
 
     async executeCommandByShortcut(hotkey_id: string) {
-        const commands = this.config.store.qc.cmds
-        const matchedCommand = commands.find(cmd => cmd.id === hotkey_id)
-        // console.log("[quick-cmd] hotkey_id:", hotkey_id)
-        // console.log("[quick-cmd] commands:", commands)
-        // console.log("[quick-cmd] match:", matchedCommand)
-
+        // console.log("[Quick Cmd] hotkey_id:", hotkey_id)     // 'Quick Cmd:⌥+space'
+        const matchedCommand = this.hotkeyConfig[hotkey_id]
         if (matchedCommand) {
             await this._send(this.app.activeTab, matchedCommand)
         }
@@ -71,7 +68,7 @@ export class QuickCmdButtonProvider extends ToolbarButtonProvider {
         for (let cmd of this.config.store.qc.cmds) {
             hotkey_id = this.PLUGIN_NAME + ":" + cmd.name
             this.config.store.hotkeys[hotkey_id] = [cmd.shortcut.replace(/\+/g, '-')]
-            cmd.id = hotkey_id
+            this.hotkeyConfig[hotkey_id] = cmd
         }
         this.hotkeys.matchedHotkey.emit('reload-hotkey')
     }
