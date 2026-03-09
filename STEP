@@ -28,5 +28,7 @@ npm publish --access public     #  先编译, 参考章节"编译插件"
 
 - release by CI trigger
 ``` bash
+git tag -l
+
 git_tag_push v0.0.8
 ```
