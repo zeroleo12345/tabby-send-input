@@ -103,5 +103,6 @@ export class EditCommandModalComponent {
     }
 
     cancel () {
+        this.ngbModal.dismissAll()
     }
 }
