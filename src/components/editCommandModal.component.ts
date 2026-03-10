@@ -1,8 +1,9 @@
 import { Component, HostListener } from '@angular/core'
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { QuickCmds } from '../api'
 import { getKeyName } from "../hotkeys.util"
 import { altKeyName, metaKeyName, KeyEventData } from "tabby-core"
+import {HotkeyInputModalComponent} from "./hotkeyInputModal.component";
 
 @Component({
     template: require('./editCommandModal.component.pug'),
@@ -13,11 +14,11 @@ export class EditCommandModalComponent {
     isCapturingShortcut: boolean = false
 
     constructor (
-        private modalInstance: NgbActiveModal,
+        private ngbModal: NgbModal,
     ) {
     }
 
-    @HostListener('document:keydown', ['$event'])
+    // @HostListener('document:keydown', ['$event'])
     onKeyDown(event: KeyboardEvent) {
         /*
             UI输入框监听设置快捷键
@@ -93,15 +94,14 @@ export class EditCommandModalComponent {
     }
 
     startCaptureShortcut(event: Event) {
-        event.preventDefault()
-        this.isCapturingShortcut = true
+        this.ngbModal.open(HotkeyInputModalComponent).result.then((value: string[]) => {
+            console.log(value)
+        })
     }
 
     save () {
-        this.modalInstance.close(this.command)
     }
 
     cancel () {
-        this.modalInstance.dismiss()
     }
 }
