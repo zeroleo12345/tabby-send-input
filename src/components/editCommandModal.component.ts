@@ -16,8 +16,8 @@ export class EditCommandModalComponent {
     }
 
     startCaptureShortcut(event: Event) {
-        this.ngbModal.open(HotkeyInputModalComponent).result.then((hotkey: string[]) => {
-            this.command.shortcut = hotkey[0]
+        this.ngbModal.open(HotkeyInputModalComponent).result.then((value: string[]) => {
+            this.command.shortcut = value[0]
             console.log(`inputKey: ${this.command.shortcut}`)
         })
     }
