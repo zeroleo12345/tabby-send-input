@@ -24,7 +24,7 @@ export class EditCommandModalComponent {
     }
 
     save () {
-        this.modalInstance.close(this.command.shortcut)
+        this.modalInstance.close(this.command)
     }
 
     cancel () {
