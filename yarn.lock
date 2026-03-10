@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@angular/animations@^13.3.2":
+  version "13.4.0"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-13.4.0.tgz#f70a69c4fd5009ba6dcd7e9ad6b71872e7597139"
+  integrity sha512-PkEmDd5zpbz/7fudxyb6qL9sBMTPlzpSIh85AapGhjgRSUSRSGuJLj49R35fQ/44c4K5bHMPEsGZjMR0oDsGdg==
+  dependencies:
+    tslib "^2.3.0"
+
 "@angular/common@^13.3.2":
   version "13.3.2"
   resolved "https://registry.npmmirror.com/@angular/common/-/common-13.3.2.tgz#d64318afeb7d4db37a43347af12d24da0fce5685"
