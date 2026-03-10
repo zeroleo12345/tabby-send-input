@@ -65,10 +65,10 @@ export class QuickCmdsSettingsTabComponent {
         modal.componentInstance.command = { ...command, group: command.group || 'Ungrouped' }
         modal.componentInstance.allGroups = Array.from(new Set(this.commands.map(x => x.group || ''))).filter(x => x)
         modal.result.then(result => {
+            // If the group is 'Ungrouped', set it to null
             if (result.group === 'Ungrouped') {
                 result.group = null
             }
-            // If the group is 'Ungrouped', set it to null
             /*
             // 从UI修改 QuickCmds: name, shortcut, text, group
             export interface QuickCmds {
