@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 import { QuickCmds } from '../api'
 import {HotkeyInputModalComponent} from "./hotkeyInputModal.component";
 
@@ -12,6 +12,7 @@ export class EditCommandModalComponent {
 
     constructor (
         private ngbModal: NgbModal,
+        private modalInstance: NgbActiveModal,
     ) {
     }
 
@@ -23,6 +24,7 @@ export class EditCommandModalComponent {
     }
 
     save () {
+        this.modalInstance.close(this.command.shortcut)
     }
 
     cancel () {
