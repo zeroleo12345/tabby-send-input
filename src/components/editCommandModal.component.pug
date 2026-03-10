@@ -32,9 +32,6 @@
                 type='text',
                 placeholder='Click here to set hotkey',
                 readonly,
-                (keydown)='$event.preventDefault()',
-                (keypress)='$event.preventDefault()',
-                (paste)='$event.preventDefault()',
                 [(ngModel)]='command.shortcut',
                 (click)='startCaptureShortcut($event)',
             )
