@@ -7,6 +7,7 @@ import TabbyCoreModule from 'tabby-core'
 import { SettingsTabProvider } from 'tabby-settings'
 
 import { EditCommandModalComponent } from './components/editCommandModal.component'
+import { HotkeyInputModalComponent } from './components/hotkeyInputModal.component'
 import { QuickCmdsSettingsTabComponent } from './components/quickCmdsSettingsTab.component'
 import { PromptModalComponent } from './components/promptModal.component'
 
@@ -29,6 +30,7 @@ import { QuickCmdsSettingsTabProvider } from './settings'
     declarations: [
         PromptModalComponent,
         EditCommandModalComponent,
+        HotkeyInputModalComponent,
         QuickCmdsSettingsTabComponent,
     ],
 })

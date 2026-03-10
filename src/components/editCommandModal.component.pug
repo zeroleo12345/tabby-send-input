@@ -2,10 +2,10 @@
     .form-group
         label Name
         input.form-control(
-            type='text', 
+            type='text',
             placeholder="Name",
             autofocus,
-            [(ngModel)]='command.name', 
+            [(ngModel)]='command.name',
         )
 
     .form-group
@@ -14,7 +14,7 @@
             rows=6,
             style="white-space: pre-line",
             placeholder="Text to be sent",
-            [(ngModel)]='command.text', 
+            [(ngModel)]='command.text',
         )
 
     .form-group
@@ -29,23 +29,14 @@
         label Shortcut
         .input-group
             input.form-control(
-                type='text', 
-                placeholder='Click to capture shortcut',
-                [(ngModel)]='command.shortcut', 
+                type='text',
+                placeholder='Click here to set hotkey',
+                readonly,
+                [(ngModel)]='command.shortcut',
                 (click)='startCaptureShortcut($event)',
-                (focus)='startCaptureShortcut($event)',
-                [disabled]='isCapturingShortcut',
             )
             .input-group-append
-                button.btn.btn-outline-secondary(
-                    type='button',
-                    (click)='startCaptureShortcut($event)',
-                    [class.btn-outline-primary]='isCapturingShortcut',
-                )
-                    if isCapturingShortcut
-                        | Capturing...
-                    else
-                        | Capture
+                button.btn.btn-outline-secondary(type='button', (click)='startCaptureShortcut($event)') Add...
 
     .form-line
         .header
@@ -54,7 +45,7 @@
         toggle(
             [(ngModel)]='command.appendCR',
         )
-                    
+
 .modal-footer
     button.btn.btn-outline-primary((click)='save()') Save
     button.btn.btn-outline-danger((click)='cancel()') Cancel
