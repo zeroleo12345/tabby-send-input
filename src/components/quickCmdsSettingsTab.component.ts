@@ -21,7 +21,7 @@ export class QuickCmdsSettingsTabComponent {
         @Inject(ToolbarButtonProvider)
         private buttonProviders: ToolbarButtonProvider[],
     ) {
-        this.commands = this.config.store.qc.cmds
+        this.commands = this.getSortedCommands(this.config.store.qc.cmds)
         this.refresh()
     }
 
@@ -53,6 +53,7 @@ export class QuickCmdsSettingsTabComponent {
             }
             */
             this.commands.push(result)
+            this.commands = this.getSortedCommands(this.commands)
             this.config.store.qc.cmds = this.commands
             this.config.save()
             this.refresh()
@@ -100,8 +101,8 @@ export class QuickCmdsSettingsTabComponent {
         modal.componentInstance.value = group.name
         modal.result.then(result => {
             if (result) {
-                for (let connection of this.commands.filter(x => x.group === group.name)) {
-                    connection.group = result
+                for (let command of this.commands.filter(x => x.group === group.name)) {
+                    command.group = result
                 }
                 this.config.save()
                 this.refresh()
@@ -120,7 +121,7 @@ export class QuickCmdsSettingsTabComponent {
     }
 
     cancelFilter(){
-        this.quickCmd=''
+        this.quickCmd = ''
         this.refresh()
     }
 
@@ -147,9 +148,9 @@ export class QuickCmdsSettingsTabComponent {
         this.get_button()?.reload_hotkey()
     }
 
-    getSortedCmds(cmds: any[]) {
-      return [...cmds].sort((a, b) => {
-        return a.text.localeCompare(b.text)
+    getSortedCommands(commands: QuickCmds[]) {
+      return [...commands].sort((a, b) => {
+        return a.shortcut.localeCompare(b.shortcut)
       })
     }
 }
