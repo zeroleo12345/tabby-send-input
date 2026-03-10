@@ -2,7 +2,7 @@ import { Component, Input, ViewChild, ElementRef } from '@angular/core'
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
-    templateUrl: './promptModal.component.pug',
+    template: require('./promptModal.component.pug'),
 })
 export class PromptModalComponent {
     @Input() value: string

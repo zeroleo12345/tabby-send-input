@@ -5,7 +5,7 @@ import { getKeyName } from "../hotkeys.util"
 import { altKeyName, metaKeyName, KeyEventData } from "tabby-core"
 
 @Component({
-    templateUrl: './editCommandModal.component.pug',
+    template: require('./editCommandModal.component.pug'),
 })
 export class EditCommandModalComponent {
     allGroups: string[] = []
