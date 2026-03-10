@@ -67,6 +67,7 @@ export class QuickCmdButtonProvider extends ToolbarButtonProvider {
         let hotkey_id: string
         for (let cmd of this.config.store.qc.cmds) {
             hotkey_id = this.PLUGIN_NAME + ":" + cmd.name
+            // TODO delete replace()
             this.config.store.hotkeys[hotkey_id] = [cmd.shortcut.replace(/\+/g, '-')]
             this.hotkeyConfig[hotkey_id] = cmd
         }
