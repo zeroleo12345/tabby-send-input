@@ -66,6 +66,7 @@ export class QuickCmdButtonProvider extends ToolbarButtonProvider {
         // Add new Quick Cmd hotkeys
         let hotkey_id: string
         for (let cmd of this.config.store.qc.cmds) {
+            if (!cmd.shortcut) continue
             hotkey_id = this.PLUGIN_NAME + ":" + cmd.name
             this.config.store.hotkeys[hotkey_id] = [cmd.shortcut]
             this.hotkeyConfig[hotkey_id] = cmd
